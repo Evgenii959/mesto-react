@@ -2,7 +2,7 @@ function ImagePopup(props) {
   return (
     <>
       <div
-        className={`popup image-popup ${props.isOpen ? "popup_opened" : ""}`}
+        className={`popup ${props.isOpen ? "popup_opened" : ""}`}
       >
         <div className="popup__box">
           <img
