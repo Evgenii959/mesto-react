@@ -1,48 +1,21 @@
-import { useEffect, useState } from "react";
-import { api } from "../utils/Api.js";
-import Card from './Card.js'
+import { useContext } from "react";
+import Card from "./Card.js";
+import { UserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    api
-      .getUser()
-      .then((res) => {
-        setUserName(res.name);
-        setUserDescription(res.about);
-        setUserAvatar(res.avatar);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    api
-      .getInitialCards()
-      .then((res) => {
-        setCards(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const currentUser = useContext(UserContext);
 
   return (
     <>
       <main>
         <section className="profile">
           <div className="profile__avatar-overlay" onClick={props.onEditAvatar}>
-            <img className="profile__image" src={userAvatar} />
+            <img className="profile__image" src={currentUser.avatar} />
           </div>
           <div className="profile__block">
             <div className="profile__info">
-              <h1 className="profile__title">{userName}</h1>
-              <p className="profile__subtitle">{userDescription}</p>
+              <h1 className="profile__title">{currentUser.name}</h1>
+              <p className="profile__subtitle">{currentUser.about}</p>
             </div>
             <button
               className="profile__icon"
@@ -58,11 +31,13 @@ function Main(props) {
         </section>
         <section className="elements">
           <article className="list">
-            {cards.map((elem) => (
+            {props.cards.map((elem) => (
               <Card
                 element={elem}
                 onImagePopup={props.onCardClick}
                 key={elem._id}
+                onCardLike={props.onCardLike}
+                onCardDelete={props.onCardDelete}
               />
             ))}
           </article>
