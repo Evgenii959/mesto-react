@@ -24,9 +24,16 @@ function App() {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleCardDelete(card) {
@@ -88,15 +95,16 @@ function App() {
   }
 
   function handleUpdateUser(user) {
+    console.log(user);
     api
       .editUser(user)
       .then((res) => {
         setCurrentUser(res);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       });
-    closeAllPopups();
   }
 
   function handleUpdateAvatar(avatar) {
@@ -104,83 +112,79 @@ function App() {
       .editAvatar(avatar.url)
       .then((res) => {
         setCurrentUser(res);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       });
-    closeAllPopups();
   }
 
   function handleAddPlaceSubmit(card) {
     api
       .addCard(card)
       .then((res) => {
-        setCards([res, ...cards]); 
+        setCards([res, ...cards]);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       });
-    closeAllPopups();
   }
 
   return (
-    <>
-      <UserContext.Provider value={currentUser}>
-        <Header />
-        <Main
-          onEditProfile={handleEditProfile}
-          onAddPlace={handleAddCard}
-          onEditAvatar={handleEditAvatar}
-          onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
-          cards={cards}
-          onCardDelete={handleCardDelete}
-        />
-        <Footer />
-        <EditProfilePopup
-          isOpen={isEditProfilePopupOpen}
-          onClose={closeAllPopups}
-          name="profile-popup"
-          title="Редактировать профиль"
-          form="profile-form"
-          buttonText="Сохранить"
-          onUpdateUser={handleUpdateUser}
-        />
-        {
-          <AddPlacePopup
-            name="element-popup"
-            title="Редактировать профиль"
-            isOpen={isAddPlacePopupOpen}
-            onClose={closeAllPopups}
-            form="element-form"
-            buttonText="Сохранить"
-            button="element-submit"
-            onAddPlace={handleAddPlaceSubmit}
-          />
-        }
-        <PopupWithForm
-          name="confirm-popup"
-          title="Вы уверены?"
-          onClose={closeAllPopups}
-          form="confirm-form"
-          buttonText="Да"
-        />
-        <EditAvatarPopup
-          name="update-popup"
-          title="Обновить аватар"
-          isOpen={isEditAvatarPopupOpen}
-          onClose={closeAllPopups}
-          buttonText="Сохранить"
-          button="avatar-submit"
-          onUpdateUserAvatar={handleUpdateAvatar}
-        />
-        <ImagePopup
-          card={selectedCard}
-          onClose={closeAllPopups}
-          isOpen={isImagePopupOpen}
-        />
-      </UserContext.Provider>
-    </>
+    <UserContext.Provider value={currentUser}>
+      <Header />
+      <Main
+        onEditProfile={handleEditProfile}
+        onAddPlace={handleAddCard}
+        onEditAvatar={handleEditAvatar}
+        onCardClick={handleCardClick}
+        onCardLike={handleCardLike}
+        cards={cards}
+        onCardDelete={handleCardDelete}
+      />
+      <Footer />
+      <EditProfilePopup
+        isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
+        name="profile-popup"
+        title="Редактировать профиль"
+        form="profile-form"
+        buttonText="Сохранить"
+        onUpdateUser={handleUpdateUser}
+      />
+      <AddPlacePopup
+        name="element-popup"
+        title="Редактировать профиль"
+        isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
+        form="element-form"
+        buttonText="Сохранить"
+        button="element-submit"
+        onAddPlace={handleAddPlaceSubmit}
+      />
+      <PopupWithForm
+        name="confirm-popup"
+        title="Вы уверены?"
+        onClose={closeAllPopups}
+        form="confirm-form"
+        buttonText="Да"
+      />
+      <EditAvatarPopup
+        name="update-popup"
+        title="Обновить аватар"
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
+        buttonText="Сохранить"
+        button="avatar-submit"
+        onUpdateUserAvatar={handleUpdateAvatar}
+      />
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+        isOpen={isImagePopupOpen}
+      />
+    </UserContext.Provider>
   );
 }
 

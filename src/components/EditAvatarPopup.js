@@ -1,5 +1,5 @@
-import { useRef, useContext } from "react";
-import { UserContext } from "../contexts/CurrentUserContext";
+import { useRef } from "react";
+import PopupWithForm from "./PopupWithForm.js";
 
 function EditAvatarPopup(props) {
   const userAvatar = useRef();
@@ -15,40 +15,29 @@ function EditAvatarPopup(props) {
   }
 
   return (
-    <div
-      className={`popup ${props.name} ${props.isOpen ? "popup_opened" : ""}`}
+    <PopupWithForm
+      isOpen={props.isOpen}
+      name={props.name}
+      onClose={props.onClose}
+      handleSubmit={handleSubmit}
+      form={props.form}
+      title={props.title}
+      button={props.button}
+      buttonText={props.buttonText}
     >
-      <div className="popup__container">
-        <button
-          type="button"
-          className="popup__close"
-          onClick={props.onClose}
-        ></button>
-        <h3 className="popup__title">{props.title}</h3>
-        <form
-          className={`popup__content ${props.form}`}
-          name="Профиль"
-          noValidate
-          onSubmit={handleSubmit}
-        >
-          <input
-            className="popup__name avatar-country"
-            required
-            type="url"
-            name="avatar"
-            placeholder="ссылка на аватар"
-            minLength="2"
-            maxLength="200"
-            id="avatar-input"
-            ref={userAvatar}
-          />
-          <span className="popup__name-error avatar-input-error"></span>
-          <button className={`popup__submit ${props.button}`} type="submit">
-            {props.buttonText}
-          </button>
-        </form>
-      </div>
-    </div>
+      <input
+        className="popup__name avatar-country"
+        required
+        type="url"
+        name="avatar"
+        placeholder="ссылка на аватар"
+        minLength="2"
+        maxLength="200"
+        id="avatar-input"
+        ref={userAvatar}
+      />
+      <span className="popup__name-error avatar-input-error"></span>
+    </PopupWithForm>
   );
 }
 export default EditAvatarPopup;

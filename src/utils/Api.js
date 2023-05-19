@@ -7,13 +7,21 @@ class Api {
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       headers: this._headers,
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   getUser() {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers,
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   editUser({name, about}) {
@@ -24,7 +32,11 @@ class Api {
         name: name,
         about: about,
       }),
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   addCard({name, link}) {
@@ -35,7 +47,11 @@ class Api {
         name: name,
         link: link,
       }),
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   changeLikeCardStatus(cardId, status) {
@@ -43,12 +59,20 @@ class Api {
           return fetch(`${this._url}/cards/${cardId}/likes `, {
             headers: this._headers,
             method: "PUT",
-          }).then((res) => this._getResponseData(res));
+          })
+            .then((res) => this._getResponseData(res))
+            .catch((err) => {
+              console.log(err);
+            });
     } else {
         return fetch(`${this._url}/cards/${cardId}/likes `, {
           headers: this._headers,
           method: "DELETE",
-        }).then((res) => this._getResponseData(res));
+        })
+          .then((res) => this._getResponseData(res))
+          .catch((err) => {
+            console.log(err);
+          });
     }
   }
 
@@ -56,7 +80,11 @@ class Api {
     return fetch(`${this._url}/cards/${cardId} `, {
       headers: this._headers,
       method: "DELETE",
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   editAvatar(url) {
@@ -66,7 +94,11 @@ class Api {
       body: JSON.stringify({
         avatar: url,
       }),
-    }).then((res) => this._getResponseData(res));
+    })
+      .then((res) => this._getResponseData(res))
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   _getResponseData(res) {
