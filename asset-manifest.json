@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/react-gh-pages/static/css/main.7d80430e.css",
+    "main.js": "/react-gh-pages/static/js/main.3beee142.js",
+    "static/media/Inter-Medium.woff": "/react-gh-pages/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
+    "static/media/Inter-Black.woff": "/react-gh-pages/static/media/Inter-Black.c6938660eec019fefd68.woff",
+    "static/media/Inter-Regular.woff": "/react-gh-pages/static/media/Inter-Regular.8c206db99195777c6769.woff",
+    "static/media/Inter-Medium.woff2": "/react-gh-pages/static/media/Inter-Medium.293fd13dbca5a3e450ef.woff2",
+    "static/media/Inter-Black.woff2": "/react-gh-pages/static/media/Inter-Black.15ca31c0a2a68f76d2d1.woff2",
+    "static/media/Inter-Regular.woff2": "/react-gh-pages/static/media/Inter-Regular.c8ba52b05a9ef10f4758.woff2",
+    "static/media/logo.svg": "/react-gh-pages/static/media/logo.03b78ada3425e9132ff3db7ea8f4a6f6.svg",
+    "static/media/heart.svg": "/react-gh-pages/static/media/heart.87ed371465c7a6a1cd01.svg",
+    "static/media/False.svg": "/react-gh-pages/static/media/False.df8eddf661ff88f2d0efd3d570d14309.svg",
+    "static/media/Trash.svg": "/react-gh-pages/static/media/Trash.da5073cd5bd70545237b.svg",
+    "static/media/True.svg": "/react-gh-pages/static/media/True.1b6082f862eac35e2514460237d96ecc.svg",
+    "static/media/black-heart.svg": "/react-gh-pages/static/media/black-heart.cfa93256bac861d9efb8.svg",
+    "index.html": "/react-gh-pages/index.html",
+    "static/media/Vector.svg": "/react-gh-pages/static/media/Vector.8667ac4a523e8fc42e59.svg",
+    "static/media/update.svg": "/react-gh-pages/static/media/update.a086f758840ae814ecde.svg",
+    "static/media/Close.svg": "/react-gh-pages/static/media/Close.2ceb783afbab75916ddc.svg",
+    "static/media/plus.svg": "/react-gh-pages/static/media/plus.d86bb2edc2f6eadb96b7.svg",
+    "static/media/small-plus.svg": "/react-gh-pages/static/media/small-plus.54b1426515811a15ebaf.svg",
+    "main.7d80430e.css.map": "/react-gh-pages/static/css/main.7d80430e.css.map",
+    "main.3beee142.js.map": "/react-gh-pages/static/js/main.3beee142.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7d80430e.css",
+    "static/js/main.3beee142.js"
+  ]
+}
